@@ -11,7 +11,7 @@ module Oauth2Provider
 
     def index
       return unless validate_params
-      render 'app/views/oauth2_provider/authorize/index.html.erb'
+      render 'oauth2_provider/authorize/index.html.erb'
     end
 
     def authorize
