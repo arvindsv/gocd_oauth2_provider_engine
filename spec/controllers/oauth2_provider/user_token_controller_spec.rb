@@ -2,7 +2,7 @@ require File.expand_path(File.join(File.dirname(__FILE__), "..", "..", "spec_hel
 
 module Oauth2Provider
   describe Oauth2Provider::UserTokensController do
-    describe 'index' do
+    describe "index" do
       before :each do
         @user_id = 42
         allow(@controller).to receive(:current_user_id_for_oauth).and_return(@user_id)
@@ -18,7 +18,7 @@ module Oauth2Provider
       end
     end
   
-    describe 'revoke' do
+    describe "revoke" do
       before :each do
         @token = create(Oauth2Provider::Token)
         allow(@controller).to receive(:current_user_id_for_oauth).and_return(@token.user_id)
@@ -44,7 +44,7 @@ module Oauth2Provider
       end
     end
     
-    describe 'revoke_by_admin' do
+    describe "revoke_by_admin" do
       before :each do
         @token = create(Oauth2Provider::Token)
         allow(@controller).to receive(:current_user_id_for_oauth).and_return(@token.user_id)
