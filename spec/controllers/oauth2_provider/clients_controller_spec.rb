@@ -29,7 +29,7 @@ module Oauth2Provider
         end
         get :index, {use_route: :oauth_engine, :format => :xml}
         output = Hash.from_xml(response.body)
-        actual = output["oauth_clients"].map {|c| c["name"]}
+        actual = output["oauth_clients"].map { |c| c["name"] }
         expect(actual).to match_array(expected_clients.map(&:name))
       end
     end

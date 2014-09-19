@@ -42,7 +42,7 @@ describe "routes for admin scope" do
       expect(get("/clients")).
         to route_to("oauth2_provider/clients#index")
       expect(get("/clients/1")).
-        to route_to("oauth2_provider/clients#show", :id => "1")
+        to route_to("oauth2_provider/clients#show", id: "1")
     end
   end
 

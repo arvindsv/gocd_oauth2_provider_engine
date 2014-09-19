@@ -64,7 +64,7 @@ describe "routes for user scope" do
       expect(get("/for-a-user/user_tokens")).
         to route_to("oauth2_provider/user_tokens#index")
       expect(delete("/for-a-user/user_tokens/revoke/123")).
-        to route_to("oauth2_provider/user_tokens#revoke", :token_id => "123")
+        to route_to("oauth2_provider/user_tokens#revoke", token_id: "123")
     end
   end
 end
