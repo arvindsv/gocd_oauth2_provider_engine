@@ -1,4 +1,5 @@
-require File.expand_path(File.join(File.dirname(__FILE__), "..", "..", "spec_helper"))
+require File.expand_path(File.join(File.dirname(__FILE__),
+                                   "..", "..", "spec_helper"))
 
 describe "routes for admin scope" do
   routes { Oauth2Provider::Engine.routes }
@@ -20,8 +21,10 @@ describe "routes for admin scope" do
       stub_const("ENV", ENV.update("ADMIN_OAUTH_URL_PREFIX" => "for-an-admin"))
       Rails.application.reload_routes!
 
-      expect(get("/for-an-admin/clients")).to route_to("oauth2_provider/clients#index")
-      expect(get("/for-an-admin/clients/new")).to route_to("oauth2_provider/clients#new")
+      expect(get("/for-an-admin/clients")).
+        to route_to("oauth2_provider/clients#index")
+      expect(get("/for-an-admin/clients/new")).
+        to route_to("oauth2_provider/clients#new")
     end
 
     it "should allow empty admin prefix" do
@@ -48,7 +51,8 @@ describe "routes for admin scope" do
       stub_const("ENV", ENV.update("ADMIN_OAUTH_URL_PREFIX" => "for-an-admin"))
       Rails.application.reload_routes!
 
-      expect(delete("/for-an-admin/user_tokens/revoke_by_admin")).to route_to("oauth2_provider/user_tokens#revoke_by_admin")
+      expect(delete("/for-an-admin/user_tokens/revoke_by_admin")).
+        to route_to("oauth2_provider/user_tokens#revoke_by_admin")
     end
   end
 end

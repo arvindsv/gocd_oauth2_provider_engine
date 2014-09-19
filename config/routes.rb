@@ -1,8 +1,14 @@
 Oauth2Provider::Engine.routes.draw do
   root to: "clients#index"
 
-  admin_prefix = (ENV["ADMIN_OAUTH_URL_PREFIX"] || "").gsub(%r{^/}, "").gsub(%r{/$}, "").gsub(%r{(.+)}, '/\1/')
-  user_prefix = (ENV["USER_OAUTH_URL_PREFIX"] || "").gsub(%r{^/}, "").gsub(%r{/$}, "").gsub(%r{(.+)}, '/\1/')
+  admin_prefix = (ENV["ADMIN_OAUTH_URL_PREFIX"] || "").
+    gsub(%r{^/}, "").
+    gsub(%r{/$}, "").
+    gsub(%r{(.+)}, '/\1/')
+  user_prefix = (ENV["USER_OAUTH_URL_PREFIX"] || "").
+    gsub(%r{^/}, "").
+    gsub(%r{/$}, "").
+    gsub(%r{(.+)}, '/\1/')
 
   scope admin_prefix do
     resources :clients
