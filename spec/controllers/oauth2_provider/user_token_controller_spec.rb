@@ -26,7 +26,7 @@ module Oauth2Provider
     
       it "should revoke token" do
         delete :revoke, {use_route: :oauth_engine}.merge({token_id: @token.id})
-        expect(response).to redirect_to("/oauth2_provider/user_tokens")
+        expect(response).to redirect_to("/oauth2_provider/for-user/user_tokens")
       end
       
       it "should not revoke if token is invalid" do
@@ -65,13 +65,13 @@ module Oauth2Provider
       
       it "should revoke token by admin" do
         delete :revoke_by_admin, {use_route: :oauth_engine}.merge({user_id: @token.user_id, token_id: @token.id})
-        expect(response).to redirect_to("/oauth2_provider/user_tokens")
+        expect(response).to redirect_to("/oauth2_provider/for-user/user_tokens")
         expect(flash[:notice]).to eq("OAuth access token was successfully deleted.")
       end
       
       it "should revoke all tokens for user" do
         delete :revoke_by_admin, {use_route: :oauth_engine}.merge({user_id: @token.user_id})
-        expect(response).to redirect_to("/oauth2_provider/user_tokens")
+        expect(response).to redirect_to("/oauth2_provider/for-user/user_tokens")
         expect(flash[:notice]).to eq("OAuth access token was successfully deleted.")
       end
     end

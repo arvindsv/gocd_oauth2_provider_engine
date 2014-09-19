@@ -67,7 +67,7 @@ module Oauth2Provider
         expect(flash[:notice]).to eq("OAuth client was successfully created.")
         expect(actual.name).to eq(name)
         expect(actual.redirect_uri).to eq(redirect_uri)
-        expect(response).to redirect_to("/oauth2_provider/clients")
+        expect(response).to redirect_to("/oauth2_provider/for-admin/clients")
       end
       
       it "should render error when save fails" do
@@ -96,7 +96,7 @@ module Oauth2Provider
         expect(actual.name).to eq(new_name)
         expect(actual.name).to_not eq(client.name)
         expect(flash[:notice]).to eq("OAuth client was successfully updated.")
-        expect(response).to redirect_to("/oauth2_provider/clients")
+        expect(response).to redirect_to("/oauth2_provider/for-admin/clients")
       end
       
       it "should render error when update fails" do
@@ -117,7 +117,7 @@ module Oauth2Provider
         expect(actual.redirect_uri).to_not eq(client.redirect_uri)
         expect(actual.redirect_uri).to eq(new_redirect_uri)
         expect(flash[:notice]).to eq("OAuth client was successfully updated.")
-        expect(response).to redirect_to("/oauth2_provider/clients")
+        expect(response).to redirect_to("/oauth2_provider/for-admin/clients")
       end
     end
     
@@ -126,7 +126,7 @@ module Oauth2Provider
         client = create(Oauth2Provider::Client)
         delete :destroy, {use_route: :oauth_client, id: client.id}
         expect(flash[:notice]).to eq("OAuth client was successfully deleted.")
-        expect(response).to redirect_to("/oauth2_provider/clients")
+        expect(response).to redirect_to("/oauth2_provider/for-admin/clients")
         expect(Oauth2Provider::Client.find_by_id(client.id)).to eq(nil)
       end
       
@@ -138,7 +138,7 @@ module Oauth2Provider
         expect(Oauth2Provider::Authorization.find_by_id(auth.id)).to_not eq(nil)
         delete :destroy, {use_route: :oauth_engine, id: client.id}
         expect(flash[:notice]).to eq("OAuth client was successfully deleted.")
-        expect(response).to redirect_to("/oauth2_provider/clients")
+        expect(response).to redirect_to("/oauth2_provider/for-admin/clients")
         expect(Oauth2Provider::Token.find_by_id(token.id)).to eq(nil)
         expect(Oauth2Provider::Authorization.find_by_id(auth.id)).to eq(nil)
         expect(Oauth2Provider::Client.find_by_id(client.id)).to eq(nil)
