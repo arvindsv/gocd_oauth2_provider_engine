@@ -26,6 +26,6 @@ task :default => :spec
 
 namespace :db do
   task :nuke => [:drop, :create, :migrate]
-  
+
   task 'test:prepare'
 end
